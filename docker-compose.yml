@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  Tool:
+    image: bwl-tool:latest
+    container_name: bwl-tool
+    restart: always
+    networks:
+      - Frontend
+        # ports:
+            #  - 8080
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.bwltoolRouter.rule=Host(`bwltool.lreg0.de`)
+      - traefik.http.routers.bwltoolRouter.entrypoints=Https
+      - traefik.http.routers.bwltoolRouter.tls=true
+      - traefik.http.routers.bwltoolRouter.tls.certresolver=HttpsResolver
+        # - traefik.http.routers.bwltoolRouter.service=bwltoolService
+        # - traefik.http.services.bwltoolService.loadbalancer.server.port=8080
+networks:
+  Frontend:
+    external: true
+
