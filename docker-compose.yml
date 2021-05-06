@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  Tool:
+  bwltool:
     build:
       context: .
     container_name: bwl-tool
