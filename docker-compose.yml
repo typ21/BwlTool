@@ -2,7 +2,8 @@ version: '3'
 
 services:
   Tool:
-    image: bwl-tool:latest
+    build:
+      context: .
     container_name: bwl-tool
     restart: always
     networks:

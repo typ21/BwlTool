@@ -1,4 +1,19 @@
-FROM openjdk:14
+FROM maven:3.8-openjdk-11 AS builder
+
+WORKDIR /usr/src/app
+
+COPY pom.xml package*.json .
+RUN mvn -B dependency:go-offline
+
+COPY . .
+RUN mvn -B package -Pproduction
+
+
+FROM openjdk:11-jre-alpine
+
 EXPOSE 8080
-COPY ./bwl-tool-1.0-SNAPSHOT.jar /tool.jar
-CMD ["java", "-jar", "/tool.jar"]
+WORKDIR /usr/src/app
+
+COPY --from=builder /usr/src/app/target/*.jar ./app.jar
+
+CMD ["java", "-jar", "-Dspring.profiles.active=prod", "app.jar"]
