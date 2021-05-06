@@ -2,10 +2,10 @@ FROM maven:3.8-openjdk-11 AS builder
 
 WORKDIR /usr/src/app
 
-COPY pom.xml package*.json .
+COPY pom.xml package*.json ./
 RUN mvn -B dependency:go-offline
 
-COPY . .
+COPY ./ ./
 RUN mvn -B package -Pproduction
 
 
