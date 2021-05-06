@@ -22,9 +22,7 @@ Tool zur Hilfe bei häufigen Rechnungen in der BWL.
 </code>
 
 <H2>Build<H2>
-<code>
-    mvn clean package -Pproduction
-</code>
+`docker-compose up --build -d`
 </br>
 <H2>Quellen<H2>
 <text>
