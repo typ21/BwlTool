@@ -1,5 +1,5 @@
 # BWLTool
-Tool zur Hilfe bei der BWL Klausur
+Tool zur Hilfe bei häufigen Rechnungen in der BWL.
 
 <H2>Was macht unser Tool?</H2>
  - Es wird Port 8080 für einen Tomcat Webserver geöffnet</br>
