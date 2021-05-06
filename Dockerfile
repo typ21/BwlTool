@@ -9,7 +9,7 @@ COPY ./ ./
 RUN mvn -B package -Pproduction
 
 
-FROM openjdk:11-jre-alpine
+FROM openjdk:11-jre-slim
 
 EXPOSE 8080
 WORKDIR /usr/src/app
