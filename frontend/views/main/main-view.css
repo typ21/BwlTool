@@ -43,3 +43,7 @@ vaadin-tab[selected] {
   background-color: var(--lumo-primary-color-10pct);
   color: var(--lumo-primary-text-color);
 }
+.backColorDarkBlue{
+  background-color: gray;
+  text-color
+}
