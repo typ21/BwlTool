@@ -8,14 +8,16 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.*;
+import de.adesso.jani.views.OwnComponents.VerticalLayoutWithFooter;
 import de.adesso.jani.views.main.MainView;
 
 @CssImport("./views/home/home-view.css")
 @Route(value = "", layout = MainView.class)
 @PageTitle("Home")
-public class HomeView extends VerticalLayout implements BeforeEnterObserver {
+public class HomeView extends VerticalLayoutWithFooter implements BeforeEnterObserver {
 
-    H1 titel = new H1("Willkommen bei deiner BWL Klausurstütze!");
+    H1 titel = new H1("Willkommen im Bwl Tool!");
+    H2 subtitle = new H2("Hier kannst du häufige Rechnungen in der Bwl leicht ausführen.");
     HorizontalLayout hlBoxen;
     HorizontalLayout hlBoxen2;
     VerticalLayout vlHandelskalkulation;

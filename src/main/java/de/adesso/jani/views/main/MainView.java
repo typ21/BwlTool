@@ -41,6 +41,7 @@ public class MainView extends AppLayout{
         addToNavbar(true, createHeaderContent());
         menu = createMenu();
         addToDrawer(createDrawerContent(menu));
+
     }
 
     private Component createHeaderContent() {
