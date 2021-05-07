@@ -4,7 +4,7 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import de.adesso.jani.Netzplan.manager.NodeManager;
 import de.adesso.jani.Netzplan.model.Node;
-import de.adesso.jani.views.sites.NetplanView;
+import de.adesso.jani.views.sites.Calculations.NetplanView;
 
 import java.util.ArrayList;
 import java.util.List;

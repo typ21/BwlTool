@@ -6,6 +6,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.cookieconsent.CookieConsent;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.*;
@@ -19,7 +20,10 @@ import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 import de.adesso.jani.views.sites.*;
+import de.adesso.jani.views.sites.Calculations.*;
 
 import static com.vaadin.flow.component.icon.VaadinIcon.EYE;
 
@@ -29,6 +33,7 @@ import static com.vaadin.flow.component.icon.VaadinIcon.EYE;
 @CssImport("./views/main/main-view.css")
 @PWA(name = "BWL-Tool", shortName = "BWL-Tool", enableInstallPrompt = false)
 @JsModule("./styles/shared-styles.js")
+@Theme(Lumo.class)
 public class MainView extends AppLayout{
 
     public static int Visitors = 0;
