@@ -1,22 +1,29 @@
 package de.adesso.jani.views.OwnComponents;
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Anchor;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
+@CssImport("./views/home/home-view.css")
 public class VerticalLayoutWithFooter extends VerticalLayout {
 
     private HorizontalLayout footer = new HorizontalLayout();
+    private VerticalLayout content = new VerticalLayout();
 
     public VerticalLayoutWithFooter(){
         super();
+        super.add(content);
         fillStandartFooter();
         super.add(footer);
+        settings();
+    }
+
+    private void settings() {
+        this.addClassName("backgroudcolorGrey");
     }
 
     private void fillStandartFooter() {
@@ -70,13 +77,18 @@ public class VerticalLayoutWithFooter extends VerticalLayout {
     }
 
     public void add(Component... components){
-        super.remove(footer);
-        super.add(components);
-        super.add(footer);
+        content.add(components);
     }
 
     public void removeAll(){
-        super.removeAll();
-        super.add(footer);
+        content.removeAll();
+    }
+
+    public void remove(Component... components){
+        content.remove(components);
+    }
+
+    public void setAlignItems(Alignment alignment){
+        content.setAlignItems(alignment);
     }
 }

@@ -11,6 +11,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import de.adesso.jani.views.OwnComponents.ABCAnal.ABCAnalyse;
 import de.adesso.jani.views.OwnComponents.ABCAnal.ABCElement;
+import de.adesso.jani.views.OwnComponents.VerticalLayoutWithFooter;
 import de.adesso.jani.views.main.MainView;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Route(value="abcanalyse", layout= MainView.class)
 @PageTitle("ABC-Analye")
-public class ABCAnalyseView extends VerticalLayout {
+public class ABCAnalyseView extends VerticalLayoutWithFooter {
 
     ArrayList<ABCElement> elements;
 

@@ -11,13 +11,14 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import de.adesso.jani.NetplanFrontendUtil.Node;
 import de.adesso.jani.Netzplan.NetzPlanConnector;
+import de.adesso.jani.views.OwnComponents.VerticalLayoutWithFooter;
 import de.adesso.jani.views.main.MainView;
 
 import java.util.ArrayList;
 
 @PageTitle("Netplanrechner")
 @Route(value="netzplan", layout= MainView.class)
-public class NetplanView extends VerticalLayout {
+public class NetplanView extends VerticalLayoutWithFooter {
 
     HorizontalLayout hlAdd;
     HorizontalLayout hlPrevs;

@@ -10,6 +10,7 @@ import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import de.adesso.jani.views.OwnComponents.BAB.Kostenart;
+import de.adesso.jani.views.OwnComponents.VerticalLayoutWithFooter;
 import de.adesso.jani.views.main.MainView;
 
 import java.math.BigDecimal;
@@ -18,7 +19,7 @@ import java.util.Arrays;
 
 @Route(value="bab", layout= MainView.class)
 @PageTitle("Betriebsabrechnungsbogen")
-public class BABView extends VerticalLayout {
+public class BABView extends VerticalLayoutWithFooter {
 
     BigDecimalField[] einzelkosten;
 

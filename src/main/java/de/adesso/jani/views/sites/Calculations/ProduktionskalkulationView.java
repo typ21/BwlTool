@@ -11,13 +11,14 @@ import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import de.adesso.jani.Util.Produktionskalkulation;
+import de.adesso.jani.views.OwnComponents.VerticalLayoutWithFooter;
 import de.adesso.jani.views.main.MainView;
 
 import java.math.BigDecimal;
 
 @Route(value="produktionskalkulation", layout= MainView.class)
 @PageTitle("Produktionskalkulation")
-public class ProduktionskalkulationView extends VerticalLayout {
+public class ProduktionskalkulationView extends VerticalLayoutWithFooter {
     private HorizontalLayout[] hl;
     private VerticalLayout[] vls;
     private Text[] names;

@@ -10,6 +10,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import de.adesso.jani.views.OwnComponents.VerticalLayoutWithFooter;
 import de.adesso.jani.views.main.MainView;
 
 import java.math.BigDecimal;
@@ -18,7 +19,7 @@ import java.util.Arrays;
 @Route(value="handelskalkulation", layout= MainView.class)
 @PageTitle("Handelskalkulation")
 
-public class HandelskalkulationView extends VerticalLayout {
+public class HandelskalkulationView extends VerticalLayoutWithFooter {
 
     private HorizontalLayout[] hl;
     private VerticalLayout[] vls;
