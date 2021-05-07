@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 package de.adesso.jani.Security;
+=======
+>>>>>>> 81bacad66a633df864354d810258cc248095cb61
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.server.HandlerHelper.RequestType;
@@ -22,6 +25,10 @@ public final class SecurityUtils {
     private SecurityUtils() {
         // Util methods only
     }
+<<<<<<< HEAD
+=======
+    static boolean isFrameworkInternalRequest(HttpServletRequest request) {
+>>>>>>> 81bacad66a633df864354d810258cc248095cb61
 
     /**
      * Gets the user name of the currently signed in user.
@@ -97,4 +104,8 @@ public final class SecurityUtils {
         return parameterValue != null
                 && Stream.of(RequestType.values()).anyMatch(r -> r.getIdentifier().equals(parameterValue));
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 81bacad66a633df864354d810258cc248095cb61
