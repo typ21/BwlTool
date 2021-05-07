@@ -5,6 +5,7 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -12,7 +13,7 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
 
 @Route("setup")
-public class Setup implements BeforeEnterObserver {
+public class Setup extends VerticalLayout implements BeforeEnterObserver {
 
     H1 header = new H1("Einrichtung des BWL Tools");
     Span description = new Span("Bitte wählen sie Daten für das Admin Panel aus");
@@ -25,6 +26,11 @@ public class Setup implements BeforeEnterObserver {
     public Setup(){
         settings();
         listener();
+        build();
+    }
+
+    private void build() {
+        add(header, description, name, password, setup);
     }
 
     private void listener() {
