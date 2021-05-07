@@ -1,9 +1,6 @@
 package de.adesso.jani.Security;
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 81bacad66a633df864354d810258cc248095cb61
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -45,11 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         UserDetails user =
                 User.withUsername("admin")
                         .password("{noop}admin")
-<<<<<<< HEAD
                         .roles("ADMIN", "USER")
-=======
-                        .roles("USER")
->>>>>>> 81bacad66a633df864354d810258cc248095cb61
                         .build();
 
         return new InMemoryUserDetailsManager(user);
@@ -73,9 +66,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/");
     }
 
-<<<<<<< HEAD
 }
-=======
-}
-
->>>>>>> 81bacad66a633df864354d810258cc248095cb61

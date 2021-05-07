@@ -1,9 +1,6 @@
 package de.adesso.jani.Security;
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 81bacad66a633df864354d810258cc248095cb61
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.NotFoundException;
@@ -45,9 +42,4 @@ public class ConfigureUIServiceInitListener implements VaadinServiceInitListener
             }
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
-
->>>>>>> 81bacad66a633df864354d810258cc248095cb61
