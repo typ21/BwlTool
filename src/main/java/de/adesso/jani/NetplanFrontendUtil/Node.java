@@ -3,7 +3,7 @@ package de.adesso.jani.NetplanFrontendUtil;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import de.adesso.jani.views.sites.NetplanView;
+import de.adesso.jani.views.sites.Calculations.NetplanView;
 
 public class Node extends HorizontalLayout {
 

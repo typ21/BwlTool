@@ -1,9 +1,9 @@
-package de.adesso.jani.BAB;
+package de.adesso.jani.views.OwnComponents.BAB;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import de.adesso.jani.views.sites.BABView;
+import de.adesso.jani.views.sites.Calculations.BABView;
 
 public class Kostenart extends HorizontalLayout {
     Double gesamtkosten;

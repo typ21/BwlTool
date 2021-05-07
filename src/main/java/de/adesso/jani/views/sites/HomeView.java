@@ -10,6 +10,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.*;
 import de.adesso.jani.views.OwnComponents.VerticalLayoutWithFooter;
 import de.adesso.jani.views.main.MainView;
+import de.adesso.jani.views.sites.Calculations.*;
 
 @CssImport("./views/home/home-view.css")
 @Route(value = "", layout = MainView.class)

@@ -20,6 +20,7 @@ import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.router.PageTitle;
 import de.adesso.jani.views.sites.*;
+import de.adesso.jani.views.sites.Calculations.*;
 
 import static com.vaadin.flow.component.icon.VaadinIcon.EYE;
 

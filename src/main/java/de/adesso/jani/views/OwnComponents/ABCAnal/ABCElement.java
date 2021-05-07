@@ -1,9 +1,9 @@
-package de.adesso.jani.ABCAnal;
+package de.adesso.jani.views.OwnComponents.ABCAnal;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import de.adesso.jani.views.sites.ABCAnalyseView;
+import de.adesso.jani.views.sites.Calculations.ABCAnalyseView;
 
 public class ABCElement extends HorizontalLayout {
 

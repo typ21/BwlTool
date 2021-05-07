@@ -1,4 +1,4 @@
-package de.adesso.jani.ABCAnal;
+package de.adesso.jani.views.OwnComponents.ABCAnal;
 
 import com.vaadin.flow.component.notification.Notification;
 

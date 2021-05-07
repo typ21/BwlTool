@@ -22,7 +22,6 @@ public class VerticalLayoutWithFooter extends VerticalLayout {
     private void fillStandartFooter() {
         footer.getStyle().set("background-color", "#233348");
         footer.setWidthFull();
-        footer.setHeight("200px");
         footer.setMargin(false);
         footer.setPadding(true);
         super.setPadding(false);

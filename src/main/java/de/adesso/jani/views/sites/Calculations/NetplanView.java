@@ -1,4 +1,4 @@
-package de.adesso.jani.views.sites;
+package de.adesso.jani.views.sites.Calculations;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
