@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
     <facet type="web" name="Web">
       <configuration>
         <webroots />
       </configuration>
-    </facet>
-    <facet type="Spring" name="Spring">
-      <configuration />
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
@@ -80,9 +80,6 @@
     <orderEntry type="library" name="Maven: com.vaadin:vaadin-spring-boot-starter:14.4.9" level="project" />
     <orderEntry type="library" name="Maven: com.vaadin:vaadin-spring:12.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.3" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.3" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.3" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-websocket:5.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.4.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-json:2.4.2" level="project" />
@@ -92,7 +89,6 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-tomcat:2.4.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:9.0.41" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.41" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.3" level="project" />
     <orderEntry type="library" name="Maven: com.vaadin:vaadin-avatar-flow:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.webjars.bowergithub.polymer:polymer:2.7.0" level="project" />
     <orderEntry type="library" name="Maven: org.webjars.bowergithub.webcomponents:webcomponentsjs:1.2.6" level="project" />
@@ -119,7 +115,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml:classmate:1.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-devtools:2.4.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.4.2" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.4.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:2.4.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test:2.4.2" level="project" />
@@ -210,6 +205,14 @@
     <orderEntry type="library" scope="TEST" name="Maven: com.vaadin:vaadin-text-field-testbench:2.3.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.vaadin:vaadin-time-picker-testbench:2.3.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.vaadin:vaadin-upload-testbench:2.3.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.4.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.4.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.4.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.vintage:junit-vintage-engine:5.7.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.7.0" level="project" />
