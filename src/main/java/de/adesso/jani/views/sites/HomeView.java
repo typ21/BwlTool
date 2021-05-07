@@ -1,11 +1,8 @@
 package de.adesso.jani.views.sites;
 
-import com.vaadin.flow.component.board.Board;
-import com.vaadin.flow.component.board.Row;
+import com.vaadin.flow.component.cookieconsent.CookieConsent;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.*;
 import com.vaadin.flow.server.VaadinSession;
@@ -28,6 +25,11 @@ public class HomeView extends VerticalLayoutWithFooter implements BeforeEnterObs
 
     H1 title = new H1("Willkommen im BWL Tool");
 
+    CookieConsent dialog = new CookieConsent(
+            "Wir benutzen Cookies für die bestmögliche Erfahrung.",
+            "Einverstanden!", "Warum?", "https://vaadin.com/terms-of-service",
+            CookieConsent.Position.BOTTOM);
+
     public HomeView(){
         createCards();
         addCardsToBoard();
@@ -35,10 +37,12 @@ public class HomeView extends VerticalLayoutWithFooter implements BeforeEnterObs
     }
 
     private void build() {
+        this.addClassName("backgroudcolorGrey");
         this.setAlignItems(Alignment.CENTER);
         add(title);
         for(HorizontalLayout hl : contents)
             add(hl);
+        add(dialog);
     }
 
     private void addCardsToBoard() {
@@ -46,19 +50,19 @@ public class HomeView extends VerticalLayoutWithFooter implements BeforeEnterObs
         if(!isMobileDevice())
             columns++;
         if(columns == 1)
-            for(Card card : cards)
-                contents.add(new HorizontalLayout(card));
+            for(Card card : cards) {
+                card.setWidth("98%");
+                HorizontalLayout hl = new HorizontalLayout();
+                hl.add(card);
+                contents.add(hl);
+            }
         else {
             boolean full = false;
             HorizontalLayout hl = new HorizontalLayout();
-            Div ph = new Div();
-            ph.setWidth("0px");
             for (Card card : cards) {
                 if(full){
                     hl.add(card);
                     contents.add(hl);
-                    ph = new Div();
-                    ph.setWidth("0px");
                     hl = new HorizontalLayout();
                     full=false;
                 }else{

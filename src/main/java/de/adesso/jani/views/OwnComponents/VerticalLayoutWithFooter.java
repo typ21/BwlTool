@@ -19,11 +19,6 @@ public class VerticalLayoutWithFooter extends VerticalLayout {
         super.add(content);
         fillStandartFooter();
         super.add(footer);
-        settings();
-    }
-
-    private void settings() {
-        this.addClassName("backgroudcolorGrey");
     }
 
     private void fillStandartFooter() {
