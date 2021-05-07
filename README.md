@@ -19,7 +19,7 @@ public static void main (String[] args) {
 ```
 
 ## Build
-`mvn clean package -Pproduction`
+`docker-compose up --build -d`
 
 ## Quellen
 Das Backend von "Netzplanrechner" ist von  
