@@ -10,8 +10,12 @@
   cursor: pointer;
 }
 .backgroudcolorGrey{
-  background-color: #f0f0f0;
+  background-color: #dedede;
 }
 .space{
   border-spacing: 25px;
+}
+.higherMargin{
+  margin-right:  15px;
+  margin-bottom: 15px;
 }

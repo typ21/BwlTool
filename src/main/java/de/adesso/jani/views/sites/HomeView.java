@@ -49,10 +49,13 @@ public class HomeView extends VerticalLayoutWithFooter implements BeforeEnterObs
         int columns = 1;
         if(!isMobileDevice())
             columns++;
+
         if(columns == 1)
             for(Card card : cards) {
-                card.setWidth("98%");
+                card.setMobileVersion(true);
+                card.setWidthFull();
                 HorizontalLayout hl = new HorizontalLayout();
+                hl.setWidthFull();
                 hl.add(card);
                 contents.add(hl);
             }
