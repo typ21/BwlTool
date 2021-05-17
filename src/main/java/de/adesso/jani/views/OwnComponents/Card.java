@@ -2,14 +2,17 @@ package de.adesso.jani.views.OwnComponents;
 
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 @CssImport("./views/home/home-view.css")
 public class Card extends VerticalLayout {
 
     private H2 title = new H2();
+    private H3 mobileTitle = new H3();
     private Span description = new Span();
     private Class navigationTarget;
+    private boolean mobileVersion = false;
 
     public static Card createCard(){
         return new Card();
@@ -22,7 +25,12 @@ public class Card extends VerticalLayout {
     }
 
     private void build() {
-        add(title, description);
+        removeAll();
+        if(mobileVersion)
+            add(mobileTitle);
+        else
+            add(title);
+        add(description);
     }
 
     private void listener() {
@@ -37,6 +45,8 @@ public class Card extends VerticalLayout {
         title.addClassName("title");
         this.addClassName("shadow");
         this.addClassName("space");
+        //is A plan but does not really help
+        //this.addClassName("higherMargin");
         this.setSpacing(true);
     }
 
@@ -47,6 +57,7 @@ public class Card extends VerticalLayout {
 
     public Card setTitle(String title){
         this.title.setText(title);
+        this.mobileTitle.setText(title);
         return this;
     }
 
@@ -55,6 +66,15 @@ public class Card extends VerticalLayout {
         return this;
     }
 
+
+    public boolean isMobileVersion() {
+        return mobileVersion;
+    }
+
+    public void setMobileVersion(boolean mobileVersion) {
+        this.mobileVersion = mobileVersion;
+        build();
+    }
 
 
 }
