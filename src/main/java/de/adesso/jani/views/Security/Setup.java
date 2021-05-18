@@ -2,6 +2,7 @@ package de.adesso.jani.views.Security;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Span;
@@ -13,11 +14,14 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
 
 @Route("setup")
+@CssImport("./views/sites/setup.css")
 public class Setup extends VerticalLayout implements BeforeEnterObserver {
 
     H1 header = new H1("Einrichtung des BWL Tools");
-    Span description = new Span("Bitte wählen sie Daten für das Admin Panel aus");
 
+    VerticalLayout panel = new VerticalLayout();
+
+    Span description = new Span("Bitte wählen sie Daten für das Admin Panel aus");
     TextField name = new TextField();
     PasswordField password = new PasswordField();
 
@@ -30,7 +34,8 @@ public class Setup extends VerticalLayout implements BeforeEnterObserver {
     }
 
     private void build() {
-        add(header, description, name, password, setup);
+        panel.add(description, name, password, setup);
+        add(header, panel);
     }
 
     private void listener() {
@@ -41,8 +46,17 @@ public class Setup extends VerticalLayout implements BeforeEnterObserver {
     }
 
     private void settings() {
+        this.setAlignItems(Alignment.CENTER);
+        this.addClassName("bg-lg");
+        this.setHeightFull();
+
+        panel.setWidth("50%");
+        panel.addClassName("shadow");
+        panel.setAlignItems(Alignment.CENTER);
+
         name.setLabel("Admin-username");
         password.setLabel("Admin-password");
+        password.setClassName("red-tm");
 
         setup.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         setup.setText("Einrichtung abschließen");
