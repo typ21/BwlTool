@@ -12,7 +12,6 @@ import java.util.Collections;
 
 @Route("login")
 @PageTitle("Login | Admin Panel")
-
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     private LoginForm login = new LoginForm();
