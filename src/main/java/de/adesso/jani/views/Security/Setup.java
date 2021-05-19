@@ -12,6 +12,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
+import de.adesso.jani.SimpleDatabase.AdminStorage;
+import de.adesso.jani.views.sites.HomeView;
 
 @Route("setup")
 @CssImport("./views/sites/setup.css")
@@ -40,8 +42,7 @@ public class Setup extends VerticalLayout implements BeforeEnterObserver {
 
     private void listener() {
         setup.addClickListener(e -> {
-            //TODO
-            //write to database and jan stuff
+            AdminStorage.addUser(name.getValue(), password.getValue());
         });
     }
 
@@ -64,7 +65,8 @@ public class Setup extends VerticalLayout implements BeforeEnterObserver {
 
     @Override
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
-        //TODO
-        //If alredy setup -> reroute to home
+        if(!AdminStorage.isEmpty()) {
+            beforeEnterEvent.rerouteTo(HomeView.class);
+        }
     }
 }
