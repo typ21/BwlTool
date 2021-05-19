@@ -30,10 +30,12 @@ public class HomeView extends VerticalLayoutWithFooter implements BeforeEnterObs
             "Einverstanden!", "Warum?", "https://vaadin.com/terms-of-service",
             CookieConsent.Position.BOTTOM);
 
+
     public HomeView(){
         createCards();
         addCardsToBoard();
         build();
+
     }
 
     private void build() {
@@ -42,7 +44,7 @@ public class HomeView extends VerticalLayoutWithFooter implements BeforeEnterObs
         add(title);
         for(HorizontalLayout hl : contents)
             add(hl);
-        add(dialog);
+        //add(dialog);
     }
 
     private void addCardsToBoard() {

@@ -8,19 +8,23 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 public class AdminUserPrinciple implements UserDetails {
 
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
+    private final List<GrantedAuthority> authorities;
 
     public AdminUserPrinciple(String userName, String password){
-
+        this.username = userName;
+        this.password = password;
+        this.authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN");
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList("ROLE_ADMIN");
+        return authorities;
     }
 
     @Override

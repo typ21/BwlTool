@@ -1,6 +1,14 @@
 package de.adesso.jani.Security;
 
+import com.vaadin.flow.server.VaadinServletRequest;
+import com.vaadin.flow.server.VaadinServletResponse;
+import de.adesso.jani.views.Security.LoginView;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.SavedRequest;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,4 +21,17 @@ public class CustomRequestCache extends HttpSessionRequestCache {
         }
     }
 
+    public String resolveRedirectUrl() {
+        SavedRequest savedRequest = getRequest(VaadinServletRequest.getCurrent().getHttpServletRequest(), VaadinServletResponse.getCurrent().getHttpServletResponse());
+        if(savedRequest instanceof DefaultSavedRequest) {
+            final String requestURI = ((DefaultSavedRequest) savedRequest).getRequestURI(); //
+            // check for valid URI and prevent redirecting to the login view
+            if (requestURI != null && !requestURI.isEmpty() && !requestURI.contains(SecurityConfiguration.LOGIN_URL)) { //
+                return requestURI.startsWith("/") ? requestURI.substring(1) : requestURI; //
+            }
+        }
+
+        // if everything fails, redirect to the main view
+        return "";
+    }
 }

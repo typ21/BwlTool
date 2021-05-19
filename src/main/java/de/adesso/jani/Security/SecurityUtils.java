@@ -3,11 +3,13 @@ package de.adesso.jani.Security;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.server.HandlerHelper.RequestType;
 import com.vaadin.flow.shared.ApplicationConstants;
+import de.adesso.jani.views.Security.LoginView;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,18 +53,24 @@ public final class SecurityUtils {
      */
     public static boolean isAccessGranted(Class<?> securedClass) {
 
+        if(LoginView.class.equals(securedClass)) return true;
+
         Authentication userAuthentication = SecurityContextHolder.getContext().getAuthentication();
 
         // All other views require authentication
-        if (!isUserLoggedIn(userAuthentication)) {
-            return false;
-        }
+        //if (!isUserLoggedIn(userAuthentication)) {
+        //    return false;
+        //}
 
         // Allow if no roles are required.
         Secured secured = AnnotationUtils.findAnnotation(securedClass, Secured.class);
         if (secured == null) {
             return true;
         }
+
+        if(userAuthentication == null) return false;
+
+        System.out.println(userAuthentication.toString());
 
         List<String> allowedRoles = Arrays.asList(secured.value());
         return userAuthentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
@@ -75,6 +83,9 @@ public final class SecurityUtils {
      * @return true if the user is logged in. False otherwise.
      */
     public static boolean isUserLoggedIn() {
+
+        System.out.println(SecurityContextHolder.getContext().getAuthentication());
+
         return isUserLoggedIn(SecurityContextHolder.getContext().getAuthentication());
     }
 
@@ -96,5 +107,11 @@ public final class SecurityUtils {
         final String parameterValue = request.getParameter(ApplicationConstants.REQUEST_TYPE_PARAMETER);
         return parameterValue != null
                 && Stream.of(RequestType.values()).anyMatch(r -> r.getIdentifier().equals(parameterValue));
+    }
+
+    public static boolean hasRole(String role) {
+        if(!isUserLoggedIn()) return false;
+        SecurityContextHolder.getContext().getAuthentication().getAuthorities().forEach(System.out::println);
+        return SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority(role));
     }
 }
