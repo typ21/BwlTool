@@ -21,8 +21,8 @@ public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
 	AdminStorage.initialize();
-        //LaunchUtil.launchBrowserInDevelopmentMode(SpringApplication.run(Application.class, args));
-        SpringApplication.run(Application.class, args);
+        LaunchUtil.launchBrowserInDevelopmentMode(SpringApplication.run(Application.class, args));
+        //SpringApplication.run(Application.class, args);
 
     }
 

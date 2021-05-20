@@ -33,7 +33,7 @@ public class VerticalLayoutWithFooter extends VerticalLayout {
                 createNewLink("https://github.com/typ21/BwlTool/issues", "Fehler melden")));
 
         footer.add(createFooterRow("Seite",
-                createNewLink("", "Admin Panel"),
+                createNewLink("/admin", "Admin Panel"),
                 createNewLink("", "About"),
                 createNewLink("", "Impressum"),
                 createNewLink("", "Datenschutz")));
