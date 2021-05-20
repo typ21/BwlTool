@@ -14,7 +14,7 @@ public class AdminStorage {
     private static HashMap<String, String> accounts;
 
 
-    static {
+    public static void initialize(){
 
         boolean existing = true;
 
@@ -46,15 +46,23 @@ public class AdminStorage {
         if(allAccounts != null) {
             for (File f : allAccounts) {
 
-                String name = f.getName();
+                String name = f.getName().toLowerCase();
 
-                BufferedReader br = new BufferedReader(new FileReader(f));
+                System.out.println(name);
 
-                StringBuilder sb = new StringBuilder();
+                FileInputStream fis = new FileInputStream(f);
 
-                br.lines().forEach(sb::append);
+                byte[] data = new byte[(int) f.length()];
 
-                accounts.put(name, sb.toString());
+                fis.read(data);
+
+                fis.close();
+
+                String str = new String(data);
+
+                System.out.println(str);
+
+                inter.put(name, str);
             }
         }
 
@@ -97,10 +105,14 @@ public class AdminStorage {
     }
 
     public static boolean contains(String s) {
-        return accounts.containsKey(s);
+        return accounts.containsKey(s.toLowerCase());
     }
 
     public static boolean addUser(String name, String pass) {
+
+        name = name.toLowerCase();
+
+        if(contains(name))return false;
 
         pass = new BCryptPasswordEncoder(10).encode(pass);
 
@@ -108,5 +120,9 @@ public class AdminStorage {
 
         return writeConfig();
 
+    }
+
+    public static boolean isEmpty() {
+        return accounts.isEmpty();
     }
 }

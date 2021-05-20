@@ -1,0 +1,34 @@
+.normal{
+    color: #233348;
+}
+.warning{
+    color: #f52419;
+}
+.good{
+    color: #00a344;
+}
+.title.good{
+    background-color: #e3f8ec;
+}
+.title.warning{
+    background-color: #ffebea;
+}
+.title.normal{
+    background-color: #a3cbff;
+}
+.title{
+    border-radius: 0.25em;
+    padding-top: 5.6px;
+    padding-bottom: 5.6px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.ncdescription{
+    color: lightslategrey;
+    margin-left: 8px;
+}
+.number{
+    margin-left: 8px;
+}
+.card{
+}

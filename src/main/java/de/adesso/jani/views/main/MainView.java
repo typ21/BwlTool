@@ -22,6 +22,7 @@ import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
+import de.adesso.jani.views.OwnComponents.TestButton;
 import de.adesso.jani.views.sites.*;
 import de.adesso.jani.views.sites.Calculations.*;
 
@@ -85,6 +86,8 @@ public class MainView extends AppLayout{
         logoLayout.add(new Image("images/logo.png", "BWL-Tool logo"));
         logoLayout.add(new H1("BWL-Tool"));
         layout.add(logoLayout, menu);
+        layout.add(TestButton.create());
+        layout.add(TestButton.threadTest());
         return layout;
     }
 
