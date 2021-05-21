@@ -61,8 +61,8 @@ public class Adminpanel extends VerticalLayout{
 
     private void settingsVoT() {
         TabPages tabpages = new TabPages();
-        VerticalLayout page1 = tabpages.createPage("letzte Woche");
-        VerticalLayout page2 = tabpages.createPage("letter Monat");
+        VerticalLayout page1 = tabpages.createPage("Tag");
+        VerticalLayout page2 = tabpages.createPage("Monat");
         tabpages.selectTab(0);
         page1.add(ChartGenerator.createCoTWeek());
         page2.add(ChartGenerator.createCoTMonth());
@@ -71,8 +71,8 @@ public class Adminpanel extends VerticalLayout{
 
     private void settingCoT() {
         TabPages tabpages = new TabPages();
-        VerticalLayout page1 = tabpages.createPage("letzte Woche");
-        VerticalLayout page2 = tabpages.createPage("letzter Monat");
+        VerticalLayout page1 = tabpages.createPage("Tag");
+        VerticalLayout page2 = tabpages.createPage("Monat");
         tabpages.selectTab(0);
         page1.add(ChartGenerator.createVoTWeek());
         page2.add(ChartGenerator.createVoTMonth());

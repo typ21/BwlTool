@@ -2,6 +2,7 @@ package de.adesso.jani.Util;
 
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
+import de.adesso.jani.views.sites.Interfaces.AdminPanelInterface;
 
 public class ChartGenerator {
 
@@ -14,8 +15,8 @@ public class ChartGenerator {
         conf.getChart().setType(ChartType.COLUMN);
 
         //Daten
-        ListSeries ls1 = new ListSeries("erfolgreiche Berechnungen", 5, 6, 4, 6, 7, 3 ,9);
-        ListSeries ls2 = new ListSeries("fehlgeschlagene Berechnungen", 3, 8, 9, 13, 2, 0 ,7);
+        ListSeries ls1 = AdminPanelInterface.getSucCalDay();
+        ListSeries ls2 = AdminPanelInterface.getBadCalDay();
 
         conf.addSeries(ls1);
         conf.addSeries(ls2);
@@ -44,12 +45,12 @@ public class ChartGenerator {
 
         //configuration
         Configuration conf = chart.getConfiguration();
-        conf.setTitle("Berechnungen des letzten Monats");
+        conf.setTitle("Berechnungen des letzten Jahr");
         conf.getChart().setType(ChartType.COLUMN);
 
         //Daten
-        ListSeries ls1 = new ListSeries("erfolgreiche Berechnungen", 5, 6, 4, 6, 7, 3 ,9, 9, 3, 7, 7, 3);
-        ListSeries ls2 = new ListSeries("fehlgeschlagene Berechnungen", 3, 8, 9, 13, 2, 0 ,7, 4, 8, 6, 7, 9);
+        ListSeries ls1 = AdminPanelInterface.getSucCalMonth();
+        ListSeries ls2 = AdminPanelInterface.getBadCalMonth();
 
         conf.addSeries(ls1);
         conf.addSeries(ls2);
@@ -88,10 +89,7 @@ public class ChartGenerator {
         YAxis yAxis = conf.getyAxis();
         yAxis.setTitle(new AxisTitle("Besucher"));
 
-        DataSeries ds = new DataSeries();
-        ds.setName("Besucher");
-        ds.setData(5, 6, 4, 6, 7, 3 ,9);
-        conf.addSeries(ds);
+        conf.addSeries(AdminPanelInterface.getVisitorsDay());
 
         Tooltip tooltip = new Tooltip();
         tooltip.setShared(true);
@@ -106,7 +104,7 @@ public class ChartGenerator {
         Configuration conf = chart.getConfiguration();
         conf.getChart().setType(ChartType.LINE);
 
-        conf.getTitle().setText("Besucher im letzten Monat");
+        conf.getTitle().setText("Besucher im Jahr");
 
         XAxis x = new XAxis();
         x.setCategories("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
@@ -115,10 +113,7 @@ public class ChartGenerator {
         YAxis yAxis = conf.getyAxis();
         yAxis.setTitle(new AxisTitle("Besucher"));
 
-        DataSeries ds = new DataSeries();
-        ds.setName("Besucher");
-        ds.setData(3, 8, 9, 13, 2, 0 ,7, 4, 8, 6, 7, 9);
-        conf.addSeries(ds);
+        conf.addSeries(AdminPanelInterface.getVisitorsMonth());
 
         Tooltip tooltip = new Tooltip();
         tooltip.setShared(true);
