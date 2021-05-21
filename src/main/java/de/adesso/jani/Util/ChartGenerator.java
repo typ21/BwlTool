@@ -5,12 +5,12 @@ import com.vaadin.flow.component.charts.model.*;
 
 public class ChartGenerator {
 
-    public static Chart createColumnCartWeek() {
+    public static Chart createCoTWeek() {
         Chart chart = new Chart();
 
         //configuration
         Configuration conf = chart.getConfiguration();
-        conf.setTitle("Besucher der letzten Woche");
+        conf.setTitle("Berechnungen der letzten Woche");
         conf.getChart().setType(ChartType.COLUMN);
 
         //Daten
@@ -39,12 +39,12 @@ public class ChartGenerator {
         return chart;
     }
 
-    public static Chart createColumnCartMonth() {
+    public static Chart createCoTMonth() {
         Chart chart = new Chart();
 
         //configuration
         Configuration conf = chart.getConfiguration();
-        conf.setTitle("Besucher der letzten Woche");
+        conf.setTitle("Berechnungen des letzten Monats");
         conf.getChart().setType(ChartType.COLUMN);
 
         //Daten
@@ -73,4 +73,57 @@ public class ChartGenerator {
         return chart;
     }
 
+    public static Chart createVoTWeek() {
+        Chart chart = new Chart();
+
+        Configuration conf = chart.getConfiguration();
+        conf.getChart().setType(ChartType.LINE);
+
+        conf.getTitle().setText("Besucher der letzten Woche");
+
+        XAxis x = new XAxis();
+        x.setCategories("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag");
+        conf.addxAxis(x);
+
+        YAxis yAxis = conf.getyAxis();
+        yAxis.setTitle(new AxisTitle("Besucher"));
+
+        DataSeries ds = new DataSeries();
+        ds.setName("Besucher");
+        ds.setData(5, 6, 4, 6, 7, 3 ,9);
+        conf.addSeries(ds);
+
+        Tooltip tooltip = new Tooltip();
+        tooltip.setShared(true);
+        conf.setTooltip(tooltip);
+
+        return chart;
+    }
+
+    public static Chart createVoTMonth() {
+        Chart chart = new Chart();
+
+        Configuration conf = chart.getConfiguration();
+        conf.getChart().setType(ChartType.LINE);
+
+        conf.getTitle().setText("Besucher im letzten Monat");
+
+        XAxis x = new XAxis();
+        x.setCategories("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
+        conf.addxAxis(x);
+
+        YAxis yAxis = conf.getyAxis();
+        yAxis.setTitle(new AxisTitle("Besucher"));
+
+        DataSeries ds = new DataSeries();
+        ds.setName("Besucher");
+        ds.setData(3, 8, 9, 13, 2, 0 ,7, 4, 8, 6, 7, 9);
+        conf.addSeries(ds);
+
+        Tooltip tooltip = new Tooltip();
+        tooltip.setShared(true);
+        conf.setTooltip(tooltip);
+
+        return chart;
+    }
 }

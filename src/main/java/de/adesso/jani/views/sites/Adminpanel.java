@@ -1,13 +1,7 @@
 package de.adesso.jani.views.sites;
 
-import com.vaadin.flow.component.board.Board;
-import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.*;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import de.adesso.jani.Util.ChartGenerator;
@@ -15,8 +9,6 @@ import de.adesso.jani.views.OwnComponents.Card;
 import de.adesso.jani.views.OwnComponents.NumberCard;
 import de.adesso.jani.views.OwnComponents.TabPages;
 import de.adesso.jani.views.main.MainView;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 
 @Route(value="admin", layout= MainView.class)
 //@Secured("ROLE_ADMIN")
@@ -28,26 +20,26 @@ public class Adminpanel extends VerticalLayout{
     NumberCard calculationsCard = new NumberCard();
     NumberCard badCalculationsCard = new NumberCard();
 
+    HorizontalLayout graphs = new HorizontalLayout();
+    Card calculationOverTime = new Card();
     Card visitorsOverTime = new Card();
 
     public Adminpanel(){
         settings();
-        listener();
         build();
     }
 
     private void build() {
         hlNumberCards.add(visitorsCard, calculationsCard, badCalculationsCard);
-        add(hlNumberCards, visitorsOverTime);
-    }
-
-    private void listener() {
+        graphs.add(calculationOverTime, visitorsOverTime);
+        add(hlNumberCards, graphs);
     }
 
     private void settings() {
         this.getStyle().set("background-color", "#f0f0f0");
         this.setMinHeight("100%");
         hlNumberCards.setWidthFull();
+        graphs.setWidthFull();
         visitorsCard
                 .setTitle("Heutige Besucher")
                 .setDescription("Aufrufe der Homepage heute")
@@ -63,16 +55,27 @@ public class Adminpanel extends VerticalLayout{
                 .setDescription("Anzahl der Berechnungen die heute fehlgeschlagen sind.")
                 .setType(badCalculationsCard.WARNING)
                 .setNumber(25);
-        settingVoT();
+        settingCoT();
+        settingsVoT();
     }
 
-    private void settingVoT() {
+    private void settingsVoT() {
+        TabPages tabpages = new TabPages();
+        VerticalLayout page1 = tabpages.createPage("letzte Woche");
+        VerticalLayout page2 = tabpages.createPage("letter Monat");
+        tabpages.selectTab(0);
+        page1.add(ChartGenerator.createCoTWeek());
+        page2.add(ChartGenerator.createCoTMonth());
+        calculationOverTime.add(tabpages);
+    }
+
+    private void settingCoT() {
         TabPages tabpages = new TabPages();
         VerticalLayout page1 = tabpages.createPage("letzte Woche");
         VerticalLayout page2 = tabpages.createPage("letzter Monat");
         tabpages.selectTab(0);
-        page1.add(ChartGenerator.createColumnCartWeek());
-        page2.add(ChartGenerator.createColumnCartMonth());
+        page1.add(ChartGenerator.createVoTWeek());
+        page2.add(ChartGenerator.createVoTMonth());
         visitorsOverTime.add(tabpages);
     }
 }
