@@ -15,7 +15,6 @@ public class TabPages extends VerticalLayout {
     Map<Tab, VerticalLayout> map = new HashMap<>();
 
     public TabPages(){
-        settings();
         listener();
         build();
     }
@@ -31,17 +30,11 @@ public class TabPages extends VerticalLayout {
         });
     }
 
-    private void settings() {
-        //this.addClassName("card");
-        tabs.setFlexGrowForEnclosedTabs(1);
-    }
-
     public VerticalLayout createPage(String title){
         VerticalLayout page = new VerticalLayout();
         Tab tab = new Tab(title);
         map.put(tab, page);
         page.setVisible(false);
-        page.setWidthFull();
         tabs.add(tab);
         add(page);
         return page;
