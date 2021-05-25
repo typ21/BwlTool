@@ -1,0 +1,7 @@
+.openClose{
+    background-color: #dbdbdb;
+    margin-top: 0px;
+}
+.openClose:hover{
+    background-color: #b8b8b8;
+}
