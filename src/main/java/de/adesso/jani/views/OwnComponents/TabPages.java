@@ -41,6 +41,7 @@ public class TabPages extends VerticalLayout {
         Tab tab = new Tab(title);
         map.put(tab, page);
         page.setVisible(false);
+        page.setWidthFull();
         tabs.add(tab);
         add(page);
         return page;
