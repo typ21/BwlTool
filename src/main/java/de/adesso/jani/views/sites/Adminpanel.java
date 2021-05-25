@@ -48,6 +48,7 @@ public class Adminpanel extends VerticalLayout{
         });
         nf.addValueChangeListener(e ->  {
            cluster.setMaxElements(e.getSource().getValue().intValue());
+           this.update();
         });
     }
 
@@ -102,6 +103,7 @@ public class Adminpanel extends VerticalLayout{
     }
 
     private void settingsVoT() {
+        calculationOverTime.removeAll();
         TabPages tabpages = new TabPages();
         VerticalLayout page1 = tabpages.createPage("Tag");
         VerticalLayout page2 = tabpages.createPage("Monat");
@@ -112,6 +114,7 @@ public class Adminpanel extends VerticalLayout{
     }
 
     private void settingCoT() {
+        visitorsOverTime.removeAll();
         TabPages tabpages = new TabPages();
         VerticalLayout page1 = tabpages.createPage("Tag");
         VerticalLayout page2 = tabpages.createPage("Monat");
@@ -124,5 +127,10 @@ public class Adminpanel extends VerticalLayout{
     private boolean isMobileDevice() {
         WebBrowser webBrowser = VaadinSession.getCurrent().getBrowser();
         return webBrowser.isAndroid() || webBrowser.isIPhone() || webBrowser.isWindowsPhone();
+    }
+
+    public void update(){
+        settingCoT();
+        settingsVoT();
     }
 }
