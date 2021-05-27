@@ -44,7 +44,7 @@ public class HomeView extends VerticalLayoutWithFooter implements BeforeEnterObs
         add(title);
         for(HorizontalLayout hl : contents)
             add(hl);
-        //add(dialog);
+        add(dialog);
     }
 
     private void addCardsToBoard() {

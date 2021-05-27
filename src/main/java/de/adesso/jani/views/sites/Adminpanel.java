@@ -34,7 +34,9 @@ public class Adminpanel extends VerticalLayout{
 
     TopBar topBar = new TopBar();
     Button settings = new Button();
-    NumberField nf = new NumberField();
+    Button lessiL = new Button(new Icon(VaadinIcon.THIN_SQUARE));
+    Button moreiL = new Button(new Icon(VaadinIcon.GRID));
+    Button refresh = new Button(new Icon(VaadinIcon.REFRESH));
 
     public Adminpanel(){
         settings();
@@ -46,10 +48,21 @@ public class Adminpanel extends VerticalLayout{
         settings.addClickListener(e -> {
 
         });
-        nf.addValueChangeListener(e ->  {
-           cluster.setMaxElements(e.getSource().getValue().intValue());
-           this.update();
+        moreiL.addClickListener(e -> {
+           if(cluster.getMaxElements() < 3)
+               cluster.setMaxElements(cluster.getMaxElements() + 1);
+           update();
         });
+        lessiL.addClickListener(e -> {
+            if(cluster.getMaxElements() > 1)
+                cluster.setMaxElements(cluster.getMaxElements() - 1);
+            update();
+        });
+        refresh.addClickListener(e ->{
+           update();
+        });
+
+
     }
 
     private void build() {
@@ -94,12 +107,7 @@ public class Adminpanel extends VerticalLayout{
     private void topBarSettings() {
         settings.setIcon(new Icon(VaadinIcon.COG_O));
 
-        nf.setValue(Double.valueOf(cluster.getMaxElements()));
-        nf.setHasControls(true);
-        nf.setMin(1);
-        nf.setMax(3);
-
-        topBar.add(settings, nf);
+        topBar.add(settings, lessiL, moreiL, refresh);
     }
 
     private void settingsVoT() {
@@ -130,7 +138,6 @@ public class Adminpanel extends VerticalLayout{
     }
 
     public void update(){
-        settingCoT();
-        settingsVoT();
+        settings();
     }
 }

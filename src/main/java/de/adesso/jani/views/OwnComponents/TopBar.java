@@ -5,6 +5,8 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import java.util.Dictionary;
@@ -14,7 +16,7 @@ public class TopBar extends VerticalLayout {
     VerticalLayout openClose = new VerticalLayout();
     boolean openByDefault = false;
     boolean open;
-    VerticalLayout content = new VerticalLayout();
+    HorizontalLayout content = new HorizontalLayout();
 
     Icon down = new Icon(VaadinIcon.ANGLE_DOWN);
     Icon up = new Icon(VaadinIcon.ANGLE_UP);
@@ -54,6 +56,10 @@ public class TopBar extends VerticalLayout {
         openClose.setSpacing(false);
         openClose.setPadding(false);
         openClose.setAlignItems(Alignment.CENTER);
+
+        content.setJustifyContentMode(JustifyContentMode.CENTER);
+        content.setWidthFull();
+
         this.setMargin(false);
         this.setPadding(false);
         this.setSpacing(false);
