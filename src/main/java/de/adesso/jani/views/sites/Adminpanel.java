@@ -61,8 +61,6 @@ public class Adminpanel extends VerticalLayout{
         refresh.addClickListener(e ->{
            update();
         });
-
-
     }
 
     private void build() {
@@ -84,6 +82,19 @@ public class Adminpanel extends VerticalLayout{
         else
             cluster.setMaxElements(3);
 
+        cardSettings();
+        settingCoT();
+        settingsVoT();
+        topBarSettings();
+    }
+
+    private void topBarSettings() {
+        settings.setIcon(new Icon(VaadinIcon.COG_O));
+
+        topBar.add(settings, lessiL, moreiL, refresh);
+    }
+
+    private void cardSettings(){
         visitorsCard
                 .setTitle("Heutige Besucher")
                 .setDescription("Aufrufe der Homepage heute")
@@ -99,15 +110,6 @@ public class Adminpanel extends VerticalLayout{
                 .setDescription("Anzahl der Berechnungen die heute fehlgeschlagen sind.")
                 .setType(badCalculationsCard.WARNING)
                 .setNumber(25);
-        settingCoT();
-        settingsVoT();
-        topBarSettings();
-    }
-
-    private void topBarSettings() {
-        settings.setIcon(new Icon(VaadinIcon.COG_O));
-
-        topBar.add(settings, lessiL, moreiL, refresh);
     }
 
     private void settingsVoT() {
@@ -138,6 +140,8 @@ public class Adminpanel extends VerticalLayout{
     }
 
     public void update(){
-        settings();
+        cardSettings();
+        settingCoT();
+        settingsVoT();
     }
 }
