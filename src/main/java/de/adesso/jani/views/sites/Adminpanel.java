@@ -34,7 +34,9 @@ public class Adminpanel extends VerticalLayout{
 
     TopBar topBar = new TopBar();
     Button settings = new Button();
-    NumberField nf = new NumberField();
+    Button lessiL = new Button(new Icon(VaadinIcon.THIN_SQUARE));
+    Button moreiL = new Button(new Icon(VaadinIcon.GRID));
+    Button refresh = new Button(new Icon(VaadinIcon.REFRESH));
 
     public Adminpanel(){
         settings();
@@ -46,9 +48,18 @@ public class Adminpanel extends VerticalLayout{
         settings.addClickListener(e -> {
 
         });
-        nf.addValueChangeListener(e ->  {
-           cluster.setMaxElements(e.getSource().getValue().intValue());
-           this.update();
+        moreiL.addClickListener(e -> {
+           if(cluster.getMaxElements() < 3)
+               cluster.setMaxElements(cluster.getMaxElements() + 1);
+           update();
+        });
+        lessiL.addClickListener(e -> {
+            if(cluster.getMaxElements() > 1)
+                cluster.setMaxElements(cluster.getMaxElements() - 1);
+            update();
+        });
+        refresh.addClickListener(e ->{
+           update();
         });
     }
 
@@ -71,6 +82,19 @@ public class Adminpanel extends VerticalLayout{
         else
             cluster.setMaxElements(3);
 
+        cardSettings();
+        settingCoT();
+        settingsVoT();
+        topBarSettings();
+    }
+
+    private void topBarSettings() {
+        settings.setIcon(new Icon(VaadinIcon.COG_O));
+
+        topBar.add(settings, lessiL, moreiL, refresh);
+    }
+
+    private void cardSettings(){
         visitorsCard
                 .setTitle("Heutige Besucher")
                 .setDescription("Aufrufe der Homepage heute")
@@ -86,20 +110,6 @@ public class Adminpanel extends VerticalLayout{
                 .setDescription("Anzahl der Berechnungen die heute fehlgeschlagen sind.")
                 .setType(badCalculationsCard.WARNING)
                 .setNumber(25);
-        settingCoT();
-        settingsVoT();
-        topBarSettings();
-    }
-
-    private void topBarSettings() {
-        settings.setIcon(new Icon(VaadinIcon.COG_O));
-
-        nf.setValue(Double.valueOf(cluster.getMaxElements()));
-        nf.setHasControls(true);
-        nf.setMin(1);
-        nf.setMax(3);
-
-        topBar.add(settings, nf);
     }
 
     private void settingsVoT() {
@@ -130,6 +140,7 @@ public class Adminpanel extends VerticalLayout{
     }
 
     public void update(){
+        cardSettings();
         settingCoT();
         settingsVoT();
     }

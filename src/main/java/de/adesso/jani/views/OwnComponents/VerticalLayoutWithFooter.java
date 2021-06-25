@@ -86,4 +86,8 @@ public class VerticalLayoutWithFooter extends VerticalLayout {
     public void setAlignItems(Alignment alignment){
         content.setAlignItems(alignment);
     }
+
+    public void setContentPadding(boolean padding){
+        content.setPadding(padding);
+    }
 }

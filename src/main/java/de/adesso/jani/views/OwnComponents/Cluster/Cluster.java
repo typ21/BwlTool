@@ -39,7 +39,10 @@ public class Cluster extends VerticalLayout {
             hl.add(component);
             elementCount++;
             if(component instanceof Indicator || elementCount == maxElements){
-                add(hl);
+                if(component instanceof Indicator)
+                    hl.remove(component);
+                if(!(hl.getChildren().findFirst().isEmpty()))
+                    add(hl);
                 hl = createNewHl();
                 elementCount = 0;
             }
