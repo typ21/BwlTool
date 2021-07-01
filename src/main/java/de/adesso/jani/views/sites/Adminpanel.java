@@ -17,11 +17,18 @@ import de.adesso.jani.views.OwnComponents.NumberCard;
 import de.adesso.jani.views.OwnComponents.TabPages;
 import de.adesso.jani.views.OwnComponents.TopBar;
 import de.adesso.jani.views.main.MainView;
+import de.adesso.jani.views.sites.Interfaces.AdminPanelInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value="admin", layout= MainView.class)
 //@Secured("ROLE_ADMIN")
 @PageTitle("Adminpanel")
 public class Adminpanel extends VerticalLayout{
+
+    @Autowired
+    private final ChartGenerator cg;
+    @Autowired
+    private final AdminPanelInterface ai;
 
     Cluster cluster = new Cluster();
 
@@ -38,7 +45,9 @@ public class Adminpanel extends VerticalLayout{
     Button moreiL = new Button(new Icon(VaadinIcon.GRID));
     Button refresh = new Button(new Icon(VaadinIcon.REFRESH));
 
-    public Adminpanel(){
+    public Adminpanel(ChartGenerator cg, AdminPanelInterface ai){
+        this.ai = ai;
+        this.cg = cg;
         settings();
         listener();
         build();
@@ -99,17 +108,17 @@ public class Adminpanel extends VerticalLayout{
                 .setTitle("Heutige Besucher")
                 .setDescription("Aufrufe der Homepage heute")
                 .setType(visitorsCard.NORMAL)
-                .setNumber(MainView.Visitors);
+                .setNumber(ai.getVisitorsToday());
         calculationsCard
                 .setTitle("Heutige Berechnungen")
                 .setDescription("Berechnungen, die heute stattgefunden haben")
                 .setType(badCalculationsCard.GOOD)
-                .setNumber(13);
+                .setNumber(ai.getCalculationsToday());
         badCalculationsCard
                 .setTitle("Heute fehlgeschlagene Rechnungen")
                 .setDescription("Anzahl der Berechnungen die heute fehlgeschlagen sind.")
                 .setType(badCalculationsCard.WARNING)
-                .setNumber(25);
+                .setNumber(ai.getBadCalculationsToday());
     }
 
     private void settingsVoT() {
@@ -118,8 +127,8 @@ public class Adminpanel extends VerticalLayout{
         VerticalLayout page1 = tabpages.createPage("Tag");
         VerticalLayout page2 = tabpages.createPage("Monat");
         tabpages.selectTab(0);
-        page1.add(ChartGenerator.createCoTWeek());
-        page2.add(ChartGenerator.createCoTMonth());
+        page1.add(cg.createCoTWeek());
+        page2.add(cg.createCoTMonth());
         calculationOverTime.add(tabpages);
     }
 
@@ -129,8 +138,8 @@ public class Adminpanel extends VerticalLayout{
         VerticalLayout page1 = tabpages.createPage("Tag");
         VerticalLayout page2 = tabpages.createPage("Monat");
         tabpages.selectTab(0);
-        page1.add(ChartGenerator.createVoTWeek());
-        page2.add(ChartGenerator.createVoTMonth());
+        page1.add(cg.createVoTWeek());
+        page2.add(cg.createVoTMonth());
         visitorsOverTime.add(tabpages);
     }
 

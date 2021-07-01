@@ -3,10 +3,20 @@ package de.adesso.jani.Util;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
 import de.adesso.jani.views.sites.Interfaces.AdminPanelInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ChartGenerator {
 
-    public static Chart createCoTWeek() {
+    @Autowired
+    private final AdminPanelInterface ai;
+
+    public ChartGenerator(AdminPanelInterface ai) {
+        this.ai = ai;
+    }
+
+    public Chart createCoTWeek() {
         Chart chart = new Chart();
 
         //configuration
@@ -15,8 +25,8 @@ public class ChartGenerator {
         conf.getChart().setType(ChartType.COLUMN);
 
         //Daten
-        ListSeries ls1 = AdminPanelInterface.getSucCalDay();
-        ListSeries ls2 = AdminPanelInterface.getBadCalDay();
+        ListSeries ls1 = ai.getSucCalDay();
+        ListSeries ls2 = ai.getBadCalDay();
 
         conf.addSeries(ls1);
         conf.addSeries(ls2);
@@ -40,7 +50,7 @@ public class ChartGenerator {
         return chart;
     }
 
-    public static Chart createCoTMonth() {
+    public Chart createCoTMonth() {
         Chart chart = new Chart();
 
         //configuration
@@ -49,8 +59,8 @@ public class ChartGenerator {
         conf.getChart().setType(ChartType.COLUMN);
 
         //Daten
-        ListSeries ls1 = AdminPanelInterface.getSucCalMonth();
-        ListSeries ls2 = AdminPanelInterface.getBadCalMonth();
+        ListSeries ls1 = ai.getSucCalMonth();
+        ListSeries ls2 = ai.getBadCalMonth();
 
         conf.addSeries(ls1);
         conf.addSeries(ls2);
@@ -74,7 +84,7 @@ public class ChartGenerator {
         return chart;
     }
 
-    public static Chart createVoTWeek() {
+    public Chart createVoTWeek() {
         Chart chart = new Chart();
 
         Configuration conf = chart.getConfiguration();
@@ -89,7 +99,7 @@ public class ChartGenerator {
         YAxis yAxis = conf.getyAxis();
         yAxis.setTitle(new AxisTitle("Besucher"));
 
-        conf.addSeries(AdminPanelInterface.getVisitorsDay());
+        conf.addSeries(ai.getVisitorsDay());
 
         Tooltip tooltip = new Tooltip();
         tooltip.setShared(true);
@@ -98,7 +108,7 @@ public class ChartGenerator {
         return chart;
     }
 
-    public static Chart createVoTMonth() {
+    public Chart createVoTMonth() {
         Chart chart = new Chart();
 
         Configuration conf = chart.getConfiguration();
@@ -113,7 +123,7 @@ public class ChartGenerator {
         YAxis yAxis = conf.getyAxis();
         yAxis.setTitle(new AxisTitle("Besucher"));
 
-        conf.addSeries(AdminPanelInterface.getVisitorsMonth());
+        conf.addSeries(ai.getVisitorsMonth());
 
         Tooltip tooltip = new Tooltip();
         tooltip.setShared(true);
