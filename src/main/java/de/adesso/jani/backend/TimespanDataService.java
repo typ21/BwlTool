@@ -28,7 +28,9 @@ public class TimespanDataService {
     public TimeSpanData getDataForTimeSpan(Period p) {
 
         LocalDate monthsback = LocalDate.now().minus(p);
-        ArrayList<DayData> allData = uDB.findAll().stream().filter(dayData -> dayData.getDate().isAfter(monthsback)).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<DayData> allData = uDB.findAll().stream().
+                filter(dayData -> dayData.getDate().isAfter(monthsback)).collect(Collectors.toCollection(ArrayList::new));
+
 
         return new TimeSpanData(allData);
     }

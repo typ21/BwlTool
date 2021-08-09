@@ -26,6 +26,8 @@ public class DayData {
     private long clickCount;
 
     private long totalCalcs;
+    private long totalFailedCalcs;
+    private long totalSuccessCalcs;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Long> calcCounts;
@@ -41,6 +43,8 @@ public class DayData {
 
         this.totalClicks = previousClickCount;
         this.clickCount = 0L;
+        this.totalSuccessCalcs = 0;
+        this.totalFailedCalcs = 0;
         this.calcCounts = List.of(0L, 0L, 0L, 0L, 0L);
         this.successCalcs = List.of(0L, 0L, 0L, 0L, 0L);
         this.failedCalcs = List.of(0L, 0L, 0L, 0L, 0L);
@@ -101,4 +105,19 @@ public class DayData {
         this.failedCalcs = failedCalcs;
     }
 
+    public long getTotalFailedCalcs() {
+        return totalFailedCalcs;
+    }
+
+    public void setTotalFailedCalcs(long totalFailedCalcs) {
+        this.totalFailedCalcs = totalFailedCalcs;
+    }
+
+    public long getTotalSuccessCalcs() {
+        return totalSuccessCalcs;
+    }
+
+    public void setTotalSuccessCalcs(long totalSuccessCalcs) {
+        this.totalSuccessCalcs = totalSuccessCalcs;
+    }
 }

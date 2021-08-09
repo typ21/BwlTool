@@ -11,6 +11,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import de.adesso.jani.NetplanFrontendUtil.Node;
 import de.adesso.jani.Netzplan.NetzPlanConnector;
+import de.adesso.jani.backend.Clicklisteners.ClickCalcEvent;
+import de.adesso.jani.backend.Clicklisteners.NetClickListener;
 import de.adesso.jani.views.OwnComponents.VerticalLayoutWithFooter;
 import de.adesso.jani.views.main.MainView;
 
@@ -41,6 +43,8 @@ public class NetplanView extends VerticalLayoutWithFooter {
         listener();
         settings();
         build();
+
+        this.addListener(ClickCalcEvent.class, new NetClickListener());
     }
 
     private void build() {
@@ -118,6 +122,9 @@ public class NetplanView extends VerticalLayoutWithFooter {
         });
         calc.addClickListener(e -> {
             output.removeAll();
+
+            this.fireEvent(new ClickCalcEvent(calc, true));
+
             String[] name = new String[nodes.size()];
             int[] dur = new int[nodes.size()];
             String[] prev = new String[nodes.size()];

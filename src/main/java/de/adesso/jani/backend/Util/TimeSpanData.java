@@ -9,37 +9,68 @@ import java.util.*;
 
 public class TimeSpanData {
 
-    private List<Long> totalClickDevelopment;
-    private List<Long> clicksADay;
-    private List<Long> calculationsADay;
+    private final List<Long> totalClickDevelopment;
+    private final List<Long> clicksADay;
+    private final List<Long> calculationsADay;
+    private final List<Long> failsADay;
+    private final List<Long> successADay;
 
-    private List<Long> abcADay;
-    private List<Long> abcSuccess;
-    private List<Long> abcFails;
+    private final List<Long> abcADay;
+    private final List<Long> abcSuccess;
+    private final List<Long> abcFails;
 
-    private List<Long> babADay;
-    private List<Long> babSuccess;
-    private List<Long> babFails;
+    private final List<Long> babADay;
+    private final List<Long> babSuccess;
+    private final List<Long> babFails;
 
-    private List<Long> hanCalcADay;
-    private List<Long> hanCalcSuccess;
-    private List<Long> hanCalcFails;
+    private final List<Long> hanCalcADay;
+    private final List<Long> hanCalcSuccess;
+    private final List<Long> hanCalcFails;
 
-    private List<Long> netADay;
-    private List<Long> netSuccess;
-    private List<Long> netFails;
+    private final List<Long> netADay;
+    private final List<Long> netSuccess;
+    private final List<Long> netFails;
 
-    private List<Long> prodCalcADay;
-    private List<Long> prodCalcSuccess;
-    private List<Long> prodCalcFails;
+    private final List<Long> prodCalcADay;
+    private final List<Long> prodCalcSuccess;
+    private final List<Long> prodCalcFails;
 
     public TimeSpanData(ArrayList<DayData> collect) {
+
+        this.totalClickDevelopment = new ArrayList<Long>();
+        this.clicksADay = new ArrayList<Long>();
+        this.calculationsADay = new ArrayList<Long>();
+        this.failsADay = new ArrayList<Long>();
+        this.successADay = new ArrayList<Long>();
+
+        this.abcADay = new ArrayList<Long>();
+        this.abcSuccess = new ArrayList<Long>();
+        this.abcFails = new ArrayList<Long>();
+
+        this.babADay = new ArrayList<Long>();
+        this.babSuccess = new ArrayList<Long>();
+        this.babFails = new ArrayList<Long>();
+
+        this.hanCalcADay = new ArrayList<Long>();
+        this.hanCalcSuccess = new ArrayList<Long>();
+        this.hanCalcFails = new ArrayList<Long>();
+
+        this.netADay = new ArrayList<Long>();
+        this.netSuccess = new ArrayList<Long>();
+        this.netFails = new ArrayList<Long>();
+
+        this.prodCalcADay = new ArrayList<Long>();
+        this.prodCalcSuccess = new ArrayList<Long>();
+        this.prodCalcFails = new ArrayList<Long>();
+
 
         collect.stream().sorted((o1, o2) -> o1.getDate().compareTo(o2.getDate())).forEach( dayData ->
                 {
                     totalClickDevelopment.add(dayData.getTotalClicks());
                     clicksADay.add(dayData.getClickCount());
                     calculationsADay.add(dayData.getTotalCalcs());
+                    successADay.add(dayData.getTotalSuccessCalcs());
+                    failsADay.add(dayData.getTotalFailedCalcs());
 
                     abcADay.add(dayData.getCalcCounts().get(DataService.ABCIndex));
                     abcSuccess.add(dayData.getSuccessCalcs().get(DataService.ABCIndex));
@@ -136,5 +167,13 @@ public class TimeSpanData {
 
     public List<Long> getProdCalcFail() {
         return prodCalcFails;
+    }
+
+    public List<Long> getFailsADay() {
+        return failsADay;
+    }
+
+    public List<Long> getSuccessADay() {
+        return successADay;
     }
 }

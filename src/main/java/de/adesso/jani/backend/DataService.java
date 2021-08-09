@@ -38,18 +38,22 @@ public class DataService {
         return currentEntityBuffer.getClickCount();
     }
 
-    public void incrementTotalClicks(){
-        currentEntityBuffer.setTotalClicks(currentEntityBuffer.getTotalClicks()+1);
-        this.currentEntityBuffer = uDB.saveAndFlush(currentEntityBuffer);
-    }
-
     public void incrementTodayClicks() {
-        currentEntityBuffer.setClickCount(currentEntityBuffer.getClickCount());
+        currentEntityBuffer.setClickCount(currentEntityBuffer.getClickCount()+1);
+        currentEntityBuffer.setTotalClicks(currentEntityBuffer.getTotalClicks()+1);
+
         this.currentEntityBuffer = uDB.saveAndFlush(currentEntityBuffer);
     }
 
     public long getTotalCalcCount() {
        return currentEntityBuffer.getTotalCalcs();
+    }
+
+    public long getTotalSuccess(){
+        return currentEntityBuffer.getTotalSuccessCalcs();
+    }
+    public long getTotalFail() {
+        return currentEntityBuffer.getTotalFailedCalcs();
     }
 
     /*-----ABC-Anal-----*/
