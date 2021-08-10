@@ -10,6 +10,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import de.adesso.jani.backend.Clicklisteners.ClickCalcEvent;
+import de.adesso.jani.backend.Clicklisteners.HanClickListener;
 import de.adesso.jani.views.OwnComponents.VerticalLayoutWithFooter;
 import de.adesso.jani.views.main.MainView;
 
@@ -67,6 +69,7 @@ public class HandelskalkulationView extends VerticalLayoutWithFooter {
     }
 
     private void listener() {
+        this.addListener(ClickCalcEvent.class, new HanClickListener());
         calculate.addClickListener(e -> calculate());
     }
 
@@ -177,7 +180,7 @@ public class HandelskalkulationView extends VerticalLayoutWithFooter {
                 getValue(10), getValue(11), getValue(12), getValue(13), getValue(14), getValue(15), getValue(16),
                 getValue(17), getValue(18)
         );
-        calculation.completeCalculation();
+        this.fireEvent(new ClickCalcEvent(calculate, calculation.completeCalculation()));
         System.out.println(Arrays.toString(calculation.getAllValues()));
         Double[] results = calculation.getAllValues();
         for(int i = 0; i < results.length; i++){

@@ -11,6 +11,8 @@ import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import de.adesso.jani.Util.Produktionskalkulation;
+import de.adesso.jani.backend.Clicklisteners.ClickCalcEvent;
+import de.adesso.jani.backend.Clicklisteners.ProdClickListener;
 import de.adesso.jani.views.OwnComponents.VerticalLayoutWithFooter;
 import de.adesso.jani.views.main.MainView;
 
@@ -52,6 +54,7 @@ public class ProduktionskalkulationView extends VerticalLayoutWithFooter {
     }
 
     private void listener() {
+        this.addListener(ClickCalcEvent.class, new ProdClickListener());
         calculate.addClickListener(e -> calculate());
     }
 
@@ -60,7 +63,7 @@ public class ProduktionskalkulationView extends VerticalLayoutWithFooter {
                 getValue(5,0), getValue(6,0), getValue(7, 1), getValue( 7, 2), getValue(8, 1), getValue(8,2), getValue(9,0), getValue(10, 1), getValue(10, 2),
                 getValue(11, 0), getValue(12,1), getValue(12 ,2), getValue(13,1), getValue(13,2), getValue(14, 0), getValue(15, 1), getValue(15, 2), getValue(16, 0),
                 getValue(17, 1), getValue(17, 2), getValue(18, 0));
-        calc.calcComplete();
+        this.fireEvent(new ClickCalcEvent(calculate, calc.calcComplete()));
         Double[][] soulution = calc.getAllValues();
         for(int i = 0; i < wert.length; i++){
             if(i == 1 || i == 4 || i == 7 || i == 8 || i == 10 || i == 12 || i == 13 || i == 15 || i == 17){

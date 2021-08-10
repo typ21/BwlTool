@@ -43,8 +43,6 @@ public class NetplanView extends VerticalLayoutWithFooter {
         listener();
         settings();
         build();
-
-        this.addListener(ClickCalcEvent.class, new NetClickListener());
     }
 
     private void build() {
@@ -91,6 +89,7 @@ public class NetplanView extends VerticalLayoutWithFooter {
     }
 
     private void listener() {
+        this.addListener(ClickCalcEvent.class, new NetClickListener());
         clear.addClickListener(e -> {
            name.clear();
            duration.clear();
@@ -123,8 +122,6 @@ public class NetplanView extends VerticalLayoutWithFooter {
         calc.addClickListener(e -> {
             output.removeAll();
 
-            this.fireEvent(new ClickCalcEvent(calc, true));
-
             String[] name = new String[nodes.size()];
             int[] dur = new int[nodes.size()];
             String[] prev = new String[nodes.size()];
@@ -138,7 +135,9 @@ public class NetplanView extends VerticalLayoutWithFooter {
             try {
                 NetzPlanConnector npc = new NetzPlanConnector(this, name, dur, prev);
                 npc.calcAndPrint();
+                this.fireEvent(new ClickCalcEvent(calc, true));
             } catch (Exception exception) {
+                this.fireEvent(new ClickCalcEvent(calc, false));
                 exception.printStackTrace();
             }
 

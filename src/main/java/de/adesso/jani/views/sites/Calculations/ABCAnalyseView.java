@@ -9,6 +9,8 @@ import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import de.adesso.jani.backend.Clicklisteners.ABCClickListener;
+import de.adesso.jani.backend.Clicklisteners.ClickCalcEvent;
 import de.adesso.jani.views.OwnComponents.ABCAnal.ABCAnalyse;
 import de.adesso.jani.views.OwnComponents.ABCAnal.ABCElement;
 import de.adesso.jani.views.OwnComponents.VerticalLayoutWithFooter;
@@ -52,6 +54,7 @@ public class ABCAnalyseView extends VerticalLayoutWithFooter {
     }
 
     private void listener() {
+        this.addListener(ClickCalcEvent.class, new ABCClickListener());
         addElement.addClickListener(e -> {
             double optional = 1d;
             if(optionalBDField.getValue() != null){
@@ -68,20 +71,24 @@ public class ABCAnalyseView extends VerticalLayoutWithFooter {
     }
 
     private void calculate() {
-        ABCAnalyse analys = new ABCAnalyse(elements);
-        List<ABCElement> elements = analys.analyze(groupFields[0].getValue().doubleValue() / 100, groupFields[1].getValue().doubleValue() / 100,
-                groupFields[2].getValue().doubleValue() / 100);
-        vlSolution.removeAll();
-        Double gesamtUmsatz = 0d;
-        for(ABCElement element:elements){
-            vlSolution.add(element.filled());
-            gesamtUmsatz += element.getUmsatz();
+        try {
+            ABCAnalyse analys = new ABCAnalyse(elements);
+            List<ABCElement> elements = analys.analyze(groupFields[0].getValue().doubleValue() / 100, groupFields[1].getValue().doubleValue() / 100,
+                    groupFields[2].getValue().doubleValue() / 100);
+            vlSolution.removeAll();
+            Double gesamtUmsatz = 0d;
+            for (ABCElement element : elements) {
+                vlSolution.add(element.filled());
+                gesamtUmsatz += element.getUmsatz();
+            }
+            vlSolution.add(new Span("Die Gesamtmenge an Umsatz beträgt: " + gesamtUmsatz));
+            vlSolution.add(new Span("Wie viel % des Umsatzes befindet sich in Gruppe A?: " + analys.getASum()));
+            vlSolution.add(new Span("Wie viel % des Umsatzes befindet sich in Gruppe B?: " + analys.getBSum()));
+            vlSolution.add(new Span("Wie viel % des Umsatzes befindet sich in Gruppe C?: " + analys.getCSum()));
+            this.fireEvent(new ClickCalcEvent(calculate, true));
+        }catch(Error e){
+            this.fireEvent(new ClickCalcEvent(calculate, false));
         }
-        vlSolution.add(new Span("Die Gesamtmenge an Umsatz beträgt: " + gesamtUmsatz));
-        vlSolution.add(new Span("Wie viel % des Umsatzes befindet sich in Gruppe A?: " + analys.getASum()));
-        vlSolution.add(new Span("Wie viel % des Umsatzes befindet sich in Gruppe B?: " + analys.getBSum()));
-        vlSolution.add(new Span("Wie viel % des Umsatzes befindet sich in Gruppe C?: " + analys.getCSum()));
-
     }
 
     private void settings() {

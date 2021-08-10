@@ -9,6 +9,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import de.adesso.jani.backend.Clicklisteners.BabClickListener;
+import de.adesso.jani.backend.Clicklisteners.ClickCalcEvent;
 import de.adesso.jani.views.OwnComponents.BAB.Kostenart;
 import de.adesso.jani.views.OwnComponents.VerticalLayoutWithFooter;
 import de.adesso.jani.views.main.MainView;
@@ -57,6 +59,7 @@ public class BABView extends VerticalLayoutWithFooter {
     }
 
     private void listener() {
+        this.addListener(ClickCalcEvent.class, new BabClickListener());
         clear.addClickListener(e -> {
             for(int i = 0; i < schluessel.length; i++){
                 schluessel[i].clear();
@@ -74,48 +77,52 @@ public class BABView extends VerticalLayoutWithFooter {
             gemeinkosten.add(ka);
         });
         calculate.addClickListener(e -> {
+            try {
+                Double[] intsums = new Double[5];
 
-            Double[] intsums = new Double[5];
+                Arrays.fill(intsums, 0d);
 
-            Arrays.fill(intsums, 0d);
+                for (Kostenart ka : kostenarten) {
+                    intsums[0] += ka.getGesamtkosten();
+                    intsums[1] += ka.getMaterialgemainkosten();
+                    intsums[2] += ka.getFertigungsGemeinkosten();
+                    intsums[3] += ka.getVerwaltungsgemeinkosten();
+                    intsums[4] += ka.getVertriebsgemeinkosen();
+                }
+                for (int i = 0; i < 5; i++) {
+                    sums[i].setText(String.valueOf(intsums[i]));
+                    sums[i].setWidth("12%");
+                }
+                hlSum.removeAll();
+                Div div = new Div();
+                div.setWidth("7px");
+                div.setHeight("1px");
+                hlSum.add(div);
+                hlSum.add(sums);
 
-            for(Kostenart ka: kostenarten){
-                intsums[0] += ka.getGesamtkosten();
-                intsums[1] += ka.getMaterialgemainkosten();
-                intsums[2] += ka.getFertigungsGemeinkosten();
-                intsums[3] += ka.getVerwaltungsgemeinkosten();
-                intsums[4] += ka.getVertriebsgemeinkosen();
+                double herstellkE = intsums[1] + einzelkosten[0].getValue().doubleValue() + intsums[2] + einzelkosten[1].getValue().doubleValue();
+                herstellkostenErzeugung.setText("Herstellkosten der Erzeugung: " + herstellkE);
+
+                Double herstellkU = herstellkE + lagerminderbestaende.getValue().doubleValue() - lagermehrbestaende.getValue().doubleValue();
+                herstellkostenUmsatz.setText("Herstellekosten des Umsatzes: " + herstellkU);
+
+                selbstkostenProduktion.setText("Selbstkosten der Produktion: " + (intsums[0] + einzelkosten[0].getValue().doubleValue() +
+                        einzelkosten[1].getValue().doubleValue() + einzelkosten[2].getValue().doubleValue() +
+                        einzelkosten[3].getValue().doubleValue()));
+
+                sets[0].setText("Materialgemeinkostenzuschlagssatz: " + (intsums[1] / einzelkosten[0].getValue().doubleValue()) * 100);
+                sets[1].setText("Fertigungskostenzuschlagssatz: " + (intsums[2] / einzelkosten[1].getValue().doubleValue()) * 100);
+                sets[2].setText("Verwaltungsgemeinkostenzuschlagssatz: " + (intsums[3] / herstellkU) * 100);
+                sets[3].setText("Vertriebsgemeinkostenzuschlagssatz: " + (intsums[4] / herstellkU) * 100);
+
+                hlSets.removeAll();
+                hlSets.add(sets);
+                this.fireEvent(new ClickCalcEvent(calculate, true));
+            }catch(Error error){
+                this.fireEvent(new ClickCalcEvent(calculate, false));
             }
-            for(int i = 0; i < 5; i++) {
-                sums[i].setText(String.valueOf(intsums[i]));
-                sums[i].setWidth("12%");
-            }
-            hlSum.removeAll();
-            Div div = new Div();
-            div.setWidth("7px");
-            div.setHeight("1px");
-            hlSum.add(div);
-            hlSum.add(sums);
-
-            double herstellkE = intsums[1] + einzelkosten[0].getValue().doubleValue() + intsums[2] + einzelkosten[1].getValue().doubleValue();
-            herstellkostenErzeugung.setText("Herstellkosten der Erzeugung: "+ herstellkE);
-
-            Double herstellkU = herstellkE + lagerminderbestaende.getValue().doubleValue() - lagermehrbestaende.getValue().doubleValue();
-            herstellkostenUmsatz.setText("Herstellekosten des Umsatzes: " + herstellkU);
-
-            selbstkostenProduktion.setText("Selbstkosten der Produktion: " + (intsums[0] + einzelkosten[0].getValue().doubleValue() +
-                    einzelkosten[1].getValue().doubleValue() + einzelkosten[2].getValue().doubleValue() +
-                    einzelkosten[3].getValue().doubleValue()));
-
-            sets[0].setText("Materialgemeinkostenzuschlagssatz: " + (intsums[1] / einzelkosten[0].getValue().doubleValue()) * 100);
-            sets[1].setText("Fertigungskostenzuschlagssatz: " + (intsums[2] / einzelkosten[1].getValue().doubleValue()) * 100);
-            sets[2].setText("Verwaltungsgemeinkostenzuschlagssatz: " + (intsums[3] / herstellkU) * 100);
-            sets[3].setText("Vertriebsgemeinkostenzuschlagssatz: " + (intsums[4] / herstellkU) * 100);
-
-            hlSets.removeAll();
-            hlSets.add(sets);
-
         });
+
     }
 
     private void build() {
