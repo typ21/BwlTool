@@ -130,7 +130,7 @@ public class Produktionskalkulation {
 
     }
 
-    public void calcComplete() {
+    public boolean calcComplete() {
         
        boolean complete;
 
@@ -191,11 +191,11 @@ public class Produktionskalkulation {
 
             if(++i > 100) {
                 Notification.show("Die Berechnung ist gescheitert. Vielleicht hast du zu wenige Werte eingegeben.");
-                break;
+                return false;
             }
 
         }while(!complete);
-        
+        return true;
     }
 
     private boolean calcFertigungsMaterial() {
