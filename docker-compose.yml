@@ -6,7 +6,7 @@ services:
   mysql:
     image: mysql:latest
     environment:
-      MYSQL_DATABASE: DB
+      MYSQL_DATABASE: BWLDB
       MYSQL_ROOT_PASSWORD: IlkaMosebach-98712&//
     networks:
       Backend:
