@@ -52,7 +52,7 @@ public class Handelskalkulation {
 
     }
 
-    public void completeCalculation() throws ArithmeticException{
+    public boolean completeCalculation() throws ArithmeticException{
 
         boolean complete;
 
@@ -83,10 +83,10 @@ public class Handelskalkulation {
 
             if(++currentRound >= 100) {
                 Notification.show("Die Berechnung ist gescheitert. Vielleicht hast du zu wenige Werte eingegeben.");
-                throw new ArithmeticException("Calculation did not finish! Maybe too few input");
+                return false;
             }
         } while(!complete);
-
+        return true;
     }
 
     public Double[] getAllValues(){
