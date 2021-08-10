@@ -7,7 +7,7 @@ services:
     image: mysql:latest
     environment:
       MYSQL_DATABASE: DB
-      MYSQL_ROOT_PASSWORD: PASSWORD
+      MYSQL_ROOT_PASSWORD: IlkaMosebach-98712&//
     networks:
       Backend:
         ipv4_adress: 172.28.1.1
