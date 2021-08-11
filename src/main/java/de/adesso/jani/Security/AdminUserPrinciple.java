@@ -1,6 +1,7 @@
 package de.adesso.jani.Security;
 
 import ch.qos.logback.core.util.COWArrayList;
+import de.adesso.jani.backend.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,9 +17,9 @@ public class AdminUserPrinciple implements UserDetails {
     private final String password;
     private final List<GrantedAuthority> authorities;
 
-    public AdminUserPrinciple(String userName, String password){
-        this.username = userName;
-        this.password = password;
+    public AdminUserPrinciple(User u){
+        this.username = u.getUserName();
+        this.password = u.getPassword();
         this.authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN");
     }
 
