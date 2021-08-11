@@ -18,6 +18,8 @@ services:
       context: .
     container_name: bwl-tool
     restart: always
+    depends_on:
+      - mysql
     networks:
       Backend:
         ipv4_address: 172.28.1.2
