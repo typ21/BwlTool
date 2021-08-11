@@ -10,7 +10,7 @@ services:
       MYSQL_ROOT_PASSWORD: IlkaMosebach-98712&//
     networks:
       Backend:
-        ipv4_adress: 172.28.1.1
+        ipv4_address: 172.28.1.1
 
 
   bwltool:
@@ -20,7 +20,7 @@ services:
     restart: always
     networks:
       Backend:
-        ipv4_adress: 172.28.1.2
+        ipv4_address: 172.28.1.2
 #      - Frontend
 
 # In case you want to setup a traefik configuraion, you problably should close the ports     
@@ -39,7 +39,7 @@ networks:
     external: false
     ipam:
       driver: default
-      cronfig:
+      config:
         - subnet: 172.28.0.0/16
 #  Frontend:
 #    external: true
