@@ -28,11 +28,16 @@ public class ConfigureUIServiceInitListener implements VaadinServiceInitListener
 
     private void checkSetup(BeforeEnterEvent event) {
 
-        if(!event.getNavigationTarget().equals(Setup.class)) {
-            if (aus.noAdminuserYet()) {
+        System.out.println(event.getNavigationTarget().getSimpleName() + Setup.class.equals(event.getNavigationTarget()));
+        System.out.println(aus.noAdminuserYet());
+
+        if(!Setup.class.equals(event.getNavigationTarget()))
+
+            if (aus.noAdminuserYet())
+
                 event.rerouteTo(Setup.class);
-            }
-        }
+
+
     }
 
     private void authenticateNavigation(BeforeEnterEvent event) {

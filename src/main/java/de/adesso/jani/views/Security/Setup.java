@@ -68,7 +68,7 @@ public class Setup extends VerticalLayout implements BeforeEnterObserver {
 
     @Override
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
-        if(aus.noAdminuserYet()) {
+        if(!aus.noAdminuserYet()) {
             beforeEnterEvent.rerouteTo(HomeView.class);
         }
     }

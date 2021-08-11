@@ -4,6 +4,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.server.HandlerHelper.RequestType;
 import com.vaadin.flow.shared.ApplicationConstants;
 import de.adesso.jani.views.Security.LoginView;
+import de.adesso.jani.views.Security.Setup;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -53,7 +54,7 @@ public final class SecurityUtils {
      */
     public static boolean isAccessGranted(Class<?> securedClass) {
 
-        if(LoginView.class.equals(securedClass)) return true;
+        if(LoginView.class.equals(securedClass) || Setup.class.equals(securedClass)) return true;
 
         Authentication userAuthentication = SecurityContextHolder.getContext().getAuthentication();
 
