@@ -2,6 +2,9 @@ package de.adesso.jani.backend;
 
 import org.apache.tomcat.jni.Local;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.data.jpa.repository.Temporal;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,8 +24,8 @@ public class DayData {
 
     private Long totalClicks;
 
-    @Temporal(value = TemporalType.DATE)
-    private final Date date;
+    @Column
+    private final LocalDate date;
 
     private long clickCount;
 
@@ -30,17 +33,19 @@ public class DayData {
     private long totalFailedCalcs;
     private long totalSuccessCalcs;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Long> calcCounts;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Long> successCalcs;
 
     @ElementCollection
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Long> failedCalcs;
 
     public DayData(Long previousClickCount){
-        date = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        date = LocalDate.now();
 
         this.totalClicks = previousClickCount;
         this.clickCount = 0L;
@@ -68,7 +73,7 @@ public class DayData {
         return totalClicks;
     }
     public LocalDate getDate() {
-       return LocalDate.ofInstant(date.toInstant(), ZoneId.systemDefault());
+       return date;
     }
     public void setTotalClicks(Long totalClicks) {
         this.totalClicks = totalClicks;

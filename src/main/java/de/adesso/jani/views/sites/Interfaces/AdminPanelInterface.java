@@ -20,12 +20,11 @@ import java.util.List;
 @Service
 public class AdminPanelInterface {
 
-    @Autowired
     private final DataService ds;
-    @Autowired
     private  final TimespanDataService tds;
 
 
+    @Autowired
     public AdminPanelInterface(DataService ds, TimespanDataService tds){
         this.tds = tds;
         this.ds = ds;
