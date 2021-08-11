@@ -4,8 +4,9 @@ import org.apache.tomcat.jni.Local;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class DayData {
     private Long totalClicks;
 
     @Temporal(value = TemporalType.DATE)
-    private final LocalDate date;
+    private final Date date;
 
     private long clickCount;
 
@@ -39,7 +40,7 @@ public class DayData {
     private List<Long> failedCalcs;
 
     public DayData(Long previousClickCount){
-        date = LocalDate.now();
+        date = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
         this.totalClicks = previousClickCount;
         this.clickCount = 0L;
@@ -67,7 +68,7 @@ public class DayData {
         return totalClicks;
     }
     public LocalDate getDate() {
-        return date;
+       return LocalDate.ofInstant(date.toInstant(), ZoneId.systemDefault());
     }
     public void setTotalClicks(Long totalClicks) {
         this.totalClicks = totalClicks;
