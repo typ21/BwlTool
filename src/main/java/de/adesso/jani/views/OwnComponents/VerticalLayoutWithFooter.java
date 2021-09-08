@@ -35,8 +35,8 @@ public class VerticalLayoutWithFooter extends VerticalLayout {
         footer.add(createFooterRow("Seite",
                 createNewLink("/admin", "Admin Panel"),
                 createNewLink("", "About"),
-                createNewLink("", "Impressum"),
-                createNewLink("", "Datenschutz")));
+                createNewLink("/impressum", "Impressum"),
+                createNewLink("/datenschutz", "Datenschutz")));
     }
     private VerticalLayout createFooterRow(String title, Anchor... links){
         VerticalLayout vl = new VerticalLayout();
